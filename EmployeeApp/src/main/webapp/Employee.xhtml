@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<h:head>
+	<title>Employee page</title>
+</h:head>
+<h:body>
+	<h:form>
+		<h:panelGrid columns="2" cellpadding="5">
+			<p:outputLabel value="Full Name" />
+			<p:inputText value="#{EmployeeController.employee.fullname}"></p:inputText>
+			<p:outputLabel value="E-mail" />
+			<p:inputText value="#{EmployeeController.employee.email}"></p:inputText>
+			<p:outputLabel value="Date of birth" />
+			<p:inputText value="#{EmployeeController.employee.dateofbirth}"></p:inputText>
+			<p:outputLabel value="Phone number" />
+			<p:inputText value="#{EmployeeController.employee.phonenumber}"></p:inputText>
+			<p:outputLabel value="Monthly salary" />
+			<p:inputText value="#{EmployeeController.employee.salary}"></p:inputText>
+			<p:outputLabel></p:outputLabel>
+			<p:commandButton value="Create Employee"
+				action="#{EmployeeController.CreateEmployee(EmployeeController.employee)}"></p:commandButton>
+			<p:outputLabel value="Id to delete employee" />	
+			<p:inputText value="#{EmployeeController.id}"></p:inputText>
+			<p:outputLabel></p:outputLabel>
+			<p:commandButton value="Delete"
+				action="#{EmployeeController.DeleteEmployee(employeeController.id)}"></p:commandButton>
+	
+			<p:outputLabel value="Id to update employee" />	
+			<p:inputText value="#{employeeController.id}"></p:inputText>
+			<p:outputLabel value="New full name" />
+			<p:inputText value="#{EmployeeController.employee.newfullname}"></p:inputText>
+			<p:outputLabel value="New e-mail" />
+			<p:inputText value="#{EmployeeController.employee.newemail}"></p:inputText>
+			<p:outputLabel value="New date of birth" />
+			<p:inputText value="#{EmployeeController.employee.newdateofbirth}"></p:inputText>
+			<p:outputLabel value="New phone number" />
+			<p:inputText value="#{EmployeeController.employee.newphonenumber}"></p:inputText>
+			<p:outputLabel value="New monthly salary" />
+			<p:inputText value="#{EmployeeController.employee.newsalary}"></p:inputText>
+			<p:outputLabel></p:outputLabel>
+			<p:commandButton value="Update"
+				action="#{EmployeeController.updateEmployee(EmployeeController.id,EmployeeController.newfullname, EmployeeController.newemail,EmployeeController.newdateofbirth,EmployeeController.newphonenumber, EmployeeController.newsalary)}"></p:commandButton>
+	
+	
+		</h:panelGrid>
+		
+		
+		<h:dataTable value="#{EmployeeController.listEmployees()}" var="e"
+    			styleClass="order-table"
+    			headerClass="order-table-header"
+    			rowClasses="order-table-odd-row,order-table-even-row"
+    			style="color:lightblue;font-size:23px;font-weight:bold; margin-top:30px;text-shadow: 1px 1px 2px black, 0 0 15px lightblue, 0 0 5px lightblue; border:3px solid #a5e840; background-color:rgba(0, 0,255);text-align:center; border-spacing: 5px; width:80%; margin-left:10%;">
+    	
+    		<h:column >
+    			<f:facet  name="header">
+    				Id
+    			</f:facet>
+    			<h:outputText value="#{e.Id}"/>
+    		</h:column>
+ 
+    		<h:column>
+    			<f:facet name="header">
+    				Full name
+				</f:facet>
+    			<h:outputText value="#{e.fullname}"/>
+    		</h:column>
+
+    		<h:column>
+    			<f:facet name="header">
+    				E-mail
+				</f:facet>
+    			<h:outputText value="#{e.email}"/>
+    		</h:column>
+    		
+    		
+    		<h:column>
+    			<f:facet name="header">
+    				Date of Birth
+				</f:facet>
+    			<h:outputText value="#{e.dateofbirth}"/>
+    		</h:column>
+    		
+    		<h:column>
+    			<f:facet name="header">
+    				Phone number
+				</f:facet>
+    			<h:outputText value="#{e.phonenumber}"/>
+    		</h:column>
+    		
+    		<h:column>
+    			<f:facet name="header">
+    				Monthly salary
+				</f:facet>
+    			<h:outputText value="#{e.salary}"/>
+    		</h:column>
+    	
+    	</h:dataTable>
+    	
+    	
+    	<p:inputLabel value="Employees who completed largest number of tasks in past month are:"></p:inputText>
+			<p:outputText value="#{EmployeeController.GetEWithLargestNumofTasks()}"/>
+			
+			
+		<p:inputLabel value="Three managers of department with highest salaries :"></p:inputText>
+			<p:outputText value="#{TaskController.getTopTwoManagers()}"/>
+		
+		
+	</h:form>
+</h:body>
+</html>
+

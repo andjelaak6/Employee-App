@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<h:head>
+	<title>Task page</title>
+</h:head>
+<h:body>
+	<h:form>
+		<h:panelGrid columns="2" cellpadding="4">
+			<p:outputLabel value="Name" />
+			<p:inputText value="#{TaskController.Task.name}"></p:inputText>
+			<p:outputLabel value="Description" />
+			<p:inputText value="#{TaskController.Task.description}"></p:inputText>
+			<p:outputLabel value="Assignee" />
+			<p:inputText value="#{TaskController.Task.assignee}"></p:inputText>
+			<p:outputLabel value="Due date" />
+			<p:inputText value="#{TaskController.Task.duedate}"></p:inputText>
+			<p:outputLabel></p:outputLabel>
+			<p:commandButton value="Create Task"
+				action="#{TaskController.CreateTask(TaskController.Task)}"></p:commandButton>
+			<p:outputLabel value="Id to delete Task" />	
+			<p:inputText value="#{TaskController.id}"></p:inputText>
+			<p:outputLabel></p:outputLabel>
+			<p:commandButton value="Delete"
+				action="#{TaskController.DeleteTask(TaskController.id)}"></p:commandButton>
+	
+			<p:outputLabel value="Id to update Task" />	
+			<p:inputText value="#{TaskController.id}"></p:inputText>
+			<p:outputLabel value="New name" />
+			<p:inputText value="#{TaskController.Task.newname}"></p:inputText>
+			<p:outputLabel value="New description" />
+			<p:inputText value="#{TaskController.Task.newdescription}"></p:inputText>
+			<p:outputLabel value="New assignee" />
+			<p:inputText value="#{TaskController.Task.newassignee}"></p:inputText>
+			<p:outputLabel value="New due date" />
+			<p:inputText value="#{TaskController.Task.newduedate}"></p:inputText>
+			<p:outputLabel></p:outputLabel>
+			<p:commandButton value="Update"
+				action="#{TaskController.updateTask(TaskController.id,TaskController.newname, TaskController.newdescription,TaskController.newassignee,TaskController.newduedate)}"></p:commandButton>
+	
+	
+		</h:panelGrid>
+		
+		
+		<h:dataTable value="#{TaskController.listTasks()}" var="e"
+    			styleClass="order-table"
+    			headerClass="order-table-header"
+    			rowClasses="order-table-odd-row,order-table-even-row"
+    			style="color:lightblue;font-size:23px;font-weight:bold; margin-top:30px;text-shadow: 1px 1px 2px black, 0 0 15px lightblue, 0 0 5px lightblue; border:3px solid #a5e840; background-color:rgba(0, 0,255);text-align:center; border-spacing: 5px; width:80%; margin-left:10%;">
+    	
+    		<h:column >
+    			<f:facet  name="header">
+    				Id
+    			</f:facet>
+    			<h:outputText value="#{e.Id}"/>
+    		</h:column>
+ 
+    		<h:column>
+    			<f:facet name="header">
+    				Name
+				</f:facet>
+    			<h:outputText value="#{e.name}"/>
+    		</h:column>
+
+    		<h:column>
+    			<f:facet name="header">
+    				Description
+				</f:facet>
+    			<h:outputText value="#{e.description}"/>
+    		</h:column>
+    		
+    		
+    		<h:column>
+    			<f:facet name="header">
+    				Assignee
+				</f:facet>
+    			<h:outputText value="#{e.assignee}"/>
+    		</h:column>
+    		
+    		<h:column>
+    			<f:facet name="header">
+    				Due date
+				</f:facet>
+    			<h:outputText value="#{e.duedate}"/>
+    		</h:column>
+    		
+    		
+    	
+    	</h:dataTable>
+    	
+    		<p:inputLabel value="Best Manager is:"></p:inputText>
+			<p:outputText value="#{TaskController.BestManager()}"/>
+			
+		
+		
+		
+		
+	</h:form>
+</h:body>
+</html>
+
